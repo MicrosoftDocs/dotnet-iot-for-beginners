@@ -28,8 +28,15 @@ Now that I've done that, I'll save the file and switch to the terminal. I'll use
 
 If you're using Visual Studio, you can use the `Debug > Start Debugging` menu to run the application.
 
+> Narrator view
+
+Now that we've seen how to run our application on our development machine, let's see how to deploy it to the Raspberry Pi.
+
 > Visual Studio Code view
 
-Now that I've run the application, I'll switch back to Visual Studio Code. 
+I'll use the `dotnet publish` command to publish the application. I'll use the `--runtime` option to specify the runtime identifier for my target environment, which is linux-arm. If you're using one of the 64-bit versions of Raspberry Pi OS, be sure to use linux-arm64. I'll use the `--self-contained` option to specify that the application should be published with all of its dependencies.
 
-I'll use the `dotnet publish` command to publish the application. I'll use the `--runtime` option to specify the runtime identifier for my target environment, which is linux-arm. If you're using one of the 64-bit versions of Raspberry Pi OS, be sure to use linux-arm64. I'll use the `--self-contained` option to specify that the application should be published with all of its dependencies that . I'll use the `--no-restore` option to specify that the application should not restore packages. I'll use the `--no-build` option to specify that the application should not build the application. I'll use the `--force` option to specify that the application should overwrite any existing files.
+> Visual Studio view
+
+If you're using Visual Studio, you can use the `Publish` menu to publish the application. Be sure to select the target runtime and the `Self-contained` option.
+
