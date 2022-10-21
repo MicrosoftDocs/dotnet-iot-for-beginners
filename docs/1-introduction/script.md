@@ -4,13 +4,13 @@
 
 > Narrator view
 
-Hi! I'm Cam Soper, a content developer working with .NET at Microsoft. One of my favorite things about .NET is how it runs everywhere. Well, maybe not *everywhere*, but it does run on a wide variety of devices and operating systems.
+Hi! I'm Cam Soper, a content developer working with .NET at Microsoft. One of my favorite things about .NET is how it can run on a wide variety of devices, from tiny microcontrollers to powerful servers.
 
-In this series, I'm going to talk about using on common single-board computers, like Raspberry Pi and Hummingboard. Since these devices are small and inexpensive, they're often used in Internet of Things scenarios. Raspberry Pi is the most ubiquitous, so I'll use Raspberry Pi these videos.
+In this series, I'm going to talk about using .NET on common single-board computers, like Raspberry Pi and Hummingboard. Since these devices are small and inexpensive, they're often used in Internet of Things scenarios. Raspberry Pi is the most ubiquitous, so I'll use Raspberry Pi these videos.
 
 In later videos. we'll look at how to deploy, run, and debug code in these environments. Then I'll show you how to use the .NET IoT Libraries to communicate with a variety of IoT devices, like sensors and displays.
 
-In this video, I'm going to start by showing you what you need to get started with .NET IoT on Raspberry Pi.
+Now I'm going to start by showing you what you need to get started with .NET IoT on Raspberry Pi.
 
 > Raspberry Pi view
 
@@ -44,12 +44,12 @@ Finally, click the save button and then click the Write button to write the imag
 
 > Device view, showing Raspberry Pi OS booting
 
-After the image is written, you can remove the microSD card from the card reader and insert it into the Raspberry Pi. Plug in a power supply and give the Raspberry Pi a few minutes to boot up. After the Raspberry Pi boots up, and it's connected to your network, you can connect to it using SSH. From a command shell on my development machine, I can run the following command to connect to the Raspberry Pi.
+After the image is written, you can remove the microSD card from the card reader and insert it into the Raspberry Pi. Plug in a power supply and give the Raspberry Pi a few minutes to boot up. After the Raspberry Pi boots up, and it's connected to your network, you can connect to it using SSH.
 
 > Command shell view
 
-The syntax is ssh username@hostname, where username is the default user, pi, and hostname is the hostname of the Raspberry Pi. If you didn't change the hostname, it's raspberrypi. If you did change the hostname, you'll need to use that instead.
+From a command shell on my development machine, I can run the following command to connect to the Raspberry Pi. The syntax is `ssh username@hostname`, where `username` is the default user, *pi*, and `hostname` is the hostname of the Raspberry Pi. If you didn't change the hostname, it's raspberrypi. If you did change the hostname, you'll need to use that instead. Once you're connected, you'll be prompted for the password you specified when you installed the operating system. If you see a prompt like this, you're connected to the Raspberry Pi.
 
 > Narrator view
 
-Now you're ready to start developing on Raspberry Pi. In the next video, I'll show you how to deploy, run, and debug code on Raspberry Pi.
+Now you're ready to start developing on for this device. In the next video, I'll show you how to deploy, run, and debug code on Raspberry Pi.
