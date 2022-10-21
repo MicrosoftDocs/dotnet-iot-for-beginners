@@ -1,0 +1,1 @@
+*Please note this is a shooting script and not intended to be a word-for-word representation of the final videos.*
