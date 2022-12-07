@@ -30,7 +30,7 @@ That's all there is to it. You can use this technique for all kinds of things, l
 
 > Breadboard view with switch
 
-Here I've connected a household light switch between pin 21 and ground. 
+Here I've connected a household light switch between pin 21 and ground.
 
 > Breadboard view with reed switch
 
@@ -38,7 +38,7 @@ Here's a reed switch. It's a switch that's normally open, but it closes when a m
 
 > Breadboard view with laser
 
-This example a little more complicated to wire up. I've got a laser emitter and a receiver module. When the module detects a laser, it closes the circuit between pin 21 and ground. In this way, you can use it as a laser tripwire. If you want to try building your own, I've included a link to some documetation in the description.
+This example a little more complicated to wire up. I've got a laser emitter and a receiver module. When the module detects a laser, it closes the circuit between pin 21 and ground, creating a laser tripwire. If you want to try building your own, I've included a link to some documetation in the description.
 
 > Narrator view
 

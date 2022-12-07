@@ -44,7 +44,7 @@ If you're using Visual Studio, you can use the `Publish` menu to publish the app
 
 > Visual Studio Code
 
-Now that I've published the application, I'll use an SSH file transfer utility to copy the application to the Raspberry Pi. I'll use the `scp` command line tool, which is part of OpenSSH. If you prefer to use a graphical file transfer utility, you can use WinSCP or FileZilla. 
+Now that I've published the application, I'll use an SSH file transfer utility to copy the application to the Raspberry Pi. I'll use the `scp` command line tool, which is part of OpenSSH. If you prefer to use a graphical file transfer utility, you can use WinSCP or FileZilla.
 
  The syntax for the `scp` command is `scp <source> <destination>`. The source is the path to the application on my development machine, and the destination is the path to the application on the Raspberry Pi. The destination path is in the format `username@hostname:path`. I'll use the `pi` username and the IP address of my Raspberry Pi. I'll use the `~` character to specify the home directory of the user. Finally, the `-r` option tells `scp` to copy the directory recursively.
 
