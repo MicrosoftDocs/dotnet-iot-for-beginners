@@ -1,25 +1,23 @@
-Hi there, welcome back to our series on using .NET and Raspberry Pi. In this video, we're going to be showing you how to use a MCP3008 analog-to-digital converter, or ADC, with your Raspberry Pi.
+Hi there, and welcome back to our series on using .NET and Raspberry Pi. In this video, we're going to be talking about how to use the MCP3008 analog-to-digital controller, or ADC for short.
 
-Before we get started, let's quickly explain what an ADC is and why you might want to use one. An ADC allows you to convert an analog signal, like the voltage coming from a potentiometer or temperature probe, into a digital signal that your Raspberry Pi can understand and use in a C# program.
+Now, if you're not familiar with what an ADC is, don't worry. It's a piece of hardware that allows you to convert analog signals, like the voltage coming from a potentiometer or temperature probe, into digital signals that your Raspberry Pi can understand and use in your programs.
 
-So, let's get started. The first thing you'll need is a MCP3008 ADC chip, which you can easily find online or at your local electronics store. Next, you'll need to connect the chip to your Raspberry Pi using the SPI pins, as shown in the diagram on your screen.
+To get started, let's first take a look at the MCP3008 ADC. [show the viewer a close-up of the MCP3008 ADC] As you can see, it has 8 input channels, which means it can read up to 8 different analog signals at once. It also has a few pins for power and communication.
 
-Now, let's move over to Visual Studio and set up a new C# project. To access the ADC from your C# program, you'll need to install the "MCP3008.Net" NuGet package, which you can do by going to the "Manage NuGet Packages" window and searching for "MCP3008.Net". Once you've installed the package, you're ready to start using the ADC in your program.
+Next, let's hook up our potentiometer to the ADC. [show the viewer a close-up of the potentiometer being connected to the ADC] We'll connect the potentiometer's ground pin to the ADC's ground pin, the wiper pin to one of the input channels, and the VCC pin to the ADC's VCC pin. This will allow us to read the analog signal coming from the potentiometer using the ADC.
 
-Cut to Visual Studio.
+Now that we have our potentiometer connected to the ADC, let's write a program to read the analog signal. [show the viewer the code for the program on screen]
 
-In your C# program, you'll first need to import the "MCP3008.Net" namespace at the top of your code. Then, you'll need to create an instance of the "MCP3008" class and initialize it with the appropriate SPI channel and chip select pin number.
+First, we'll import the necessary libraries for using the ADC. Then, we'll create a new instance of the MCP3008 class, which will allow us to communicate with the ADC.
 
-Once you have an instance of the "MCP3008" class, you can use its "ReadSingleEnded" method to read the analog value from a specific channel on the ADC. For example, if you have a potentiometer connected to channel 0 on the ADC, you can read its value like this:
+Next, we'll use the ReadSingleEnded method to read the analog signal from the input channel we connected our potentiometer to. This method returns a value between 0 and 1023, which represents the voltage of the input signal.
 
-int potentiometerValue = mcp3008.ReadSingleEnded(0);
+Finally, we'll print the value to the console so we can see it in action. [show the viewer the program running and printing the value to the console]
 
-Now, let's test this out on a breadboard. Cut to a close-up of the breadboard and potentiometer. As you can see, we have our MCP3008 ADC chip connected to the Raspberry Pi via the SPI pins, and our potentiometer is connected to channel 0 on the ADC.
+As you can see, the value changes as we turn the potentiometer knob, allowing us to control the analog signal with the ADC.
 
-To test the ADC, we'll create a simple C# program that reads the value of the potentiometer and displays it on the console. Cut to Visual Studio and show the code. Then, run the program and show the output on the console.
+Now, let's quickly demonstrate how to use the ADC with a two-wire RTD probe. [show the viewer the RTD probe being connected to the ADC] We'll connect the RTD probe's signal and ground wires to the ADC's input channel and ground pin, respectively.
 
-As you can see, the program is successfully reading the value of the potentiometer and printing it to the console. You can use this same approach to read values from other sensors, like an RTD temperature probe.
+Then, we can use the same ReadSingleEnded method to read the analog signal from the RTD probe and convert it to a temperature value. [show the viewer the code for converting the analog signal to a temperature value]
 
-Cut to a close-up of the RTD temperature probe connected to the ADC. Then, show the code for a program that reads the temperature from the probe and displays it on the console. Run the program and show the output on the console.
-
-And there you have it, using .NET and Raspberry Pi to read analog values from sensors using a MCP3008 ADC.
+And that's how you can use the MCP3008 ADC with .NET and Raspberry Pi. In our next video, we'll be discussing how to use the ADC with other types of sensors, so stay tuned!
