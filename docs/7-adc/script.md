@@ -1,3 +1,5 @@
+*Please note this is a shooting script and not intended to be a word-for-word representation of the final videos.*
+
 Hi there, and welcome back to our series on using .NET and Raspberry Pi. In this video, we're going to be talking about how to use the MCP3008 analog-to-digital controller, or ADC for short.
 
 Now, if you're not familiar with what an ADC is, don't worry. It's a piece of hardware that allows you to convert analog signals, like the voltage coming from a potentiometer or temperature probe, into digital signals that your Raspberry Pi can understand and use in your programs.

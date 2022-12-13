@@ -2,7 +2,7 @@
 
 *Please note this is a shooting script and not intended to be a word-for-word representation of the final videos.*
 
-> Narrator view
+[Narrator view]
 
 Hi! I'm Cam Soper, a content developer working with .NET at Microsoft. One of my favorite things about .NET is how it can run on a wide variety of devices, from tiny microcontrollers to powerful servers.
 
@@ -12,19 +12,19 @@ In later videos. we'll look at how to deploy, run, and debug code in these envir
 
 Now I'm going to start by showing you what you need to get started with .NET IoT on Raspberry Pi.
 
-> Raspberry Pi view
+[Raspberry Pi view]
 
 This is a Raspberry Pi 3 Model B. It's a single-board computer that's about the size of a credit card. It has a quad-core ARM processor, 1 GB of RAM, and a built-in wireless network adapter. It's a great platform for learning about IoT. For these videos, you can use Raspberry Pi 2, 3, or 4 models, although I would recommend using a Raspberry Pi 3 or 4, as they're a little more future-proof.
 
-> SD card view
+[SD card view]
 
 You'll also need a microSD card. You can use any size, but I recommend at least 8 GB. You'll need a microSD card reader to write the operating system to the card.
 
-> raspberrypi.org view
+[raspberrypi.org view]
 
 You can download the operating system from the Raspberry Pi website. Raspberry Pi supports several Linux-based operating systems. I recommend using Raspberry Pi OS, which is a Debian-based Linux distribution. To install Raspberry Pi OS, first install and run the Raspberry Pi Imager from RaspberryPi.org.
 
-> Raspberry Pi Imager view
+[Raspberry Pi Imager view]
 
 You can select the default Raspberry Pi OS (32-bit) option, but we won't be using the desktop environment, so I recommend selecting the Raspberry Pi OS (32-bit) Lite option. This will install a minimal version of the operating system, which will save space on the microSD card.
 
@@ -42,14 +42,14 @@ Optionally specify your timezone and locale. This will make it easier to work wi
 
 Finally, click the save button and then click the Write button to write the image to the microSD card.
 
-> Device view, showing Raspberry Pi OS booting
+[Device view, showing Raspberry Pi OS booting]
 
 After the image is written, you can remove the microSD card from the card reader and insert it into the Raspberry Pi. Plug in a power supply and give the Raspberry Pi a few minutes to boot up. After the Raspberry Pi boots up, and it's connected to your network, you can connect to it using SSH.
 
-> Command shell view
+[Command shell view]
 
 From a command shell on my development machine, I can run the following command to connect to the Raspberry Pi. The syntax is `ssh username@hostname`, where `username` is the default user, *pi*, and `hostname` is the hostname of the Raspberry Pi. If you didn't change the hostname, it's raspberrypi. If you did change the hostname, you'll need to use that instead. Once you're connected, you'll be prompted for the password you specified when you installed the operating system. If you see a prompt like this, you're connected to the Raspberry Pi.
 
-> Narrator view
+[Narrator view]
 
 Now you're ready to start developing on for this device. In the next video, I'll show you how to deploy, run, and debug code on Raspberry Pi.
