@@ -6,15 +6,17 @@
 
 Hi! I'm Cam Soper, a content developer working with .NET at Microsoft. One of my favorite things about .NET is how it can run on a wide variety of devices, from tiny microcontrollers to powerful servers.
 
-In this series, I'm going to talk about using .NET on common single-board computers, like Raspberry Pi and Hummingboard. Since these devices are small and inexpensive, they're often used in Internet of Things scenarios. Raspberry Pi is the most ubiquitous, so I'll use Raspberry Pi these videos.
+In this series, I'm going to talk about using .NET on common single-board computers, like Raspberry Pi and Hummingboard. Since these devices are small and inexpensive, they're often used in Internet of Things scenarios. Raspberry Pi is the most ubiquitous, so I'll be using Raspberry Pi.
 
 In later videos. we'll look at how to deploy, run, and debug code in these environments. Then I'll show you how to use the .NET IoT Libraries to communicate with a variety of IoT devices, like sensors and displays.
 
-Now I'm going to start by showing you what you need to get started with .NET IoT on Raspberry Pi.
+But for now I'm going to start by showing you what you need to know before you get started with .NET IoT on Raspberry Pi.
 
 [Raspberry Pi view]
 
-This is a Raspberry Pi 3 Model B. It's a single-board computer that's about the size of a credit card. It has a quad-core ARM processor, 1 GB of RAM, and a built-in wireless network adapter. It's a great platform for learning about IoT. For these videos, you can use Raspberry Pi 2, 3, or 4 models, although I would recommend using a Raspberry Pi 3 or 4, as they're a little more future-proof.
+This is a Raspberry Pi 4 Model B. It's a single-board computer that's about the size of a credit card. It has a quad-core 64-bit ARM processor and a variety of ports, including USB, Ethernet, HDMI, and more. It comes with up to 8 gigabytes of integrated RAM. This other board is a Raspberry Pi 3 Model B. It's a little older, but it's still a great device with a 64-bit ARM processor.
+
+For these videos, you can use Raspberry Pi 2, 3, or 4 models, although I would recommend using a Raspberry Pi 3 or 4, as they're a little more future-proof.
 
 [SD card view]
 
@@ -32,9 +34,9 @@ Next select the microSD card you want to use.
 
 Before you write the image to the card, you'll need to go into the advanced options. First, note that the default hostname is raspberrypi. I'm going to leave it as is, but you might want to change it to something more descriptive, especially if there are multiple Raspberry Pis on your network.
 
-Next, enable SSH. This will allow you to remotely connect to the Raspberry Pi from your development machine. 
+Next, enable SSH. This will allow you to remotely connect to the Raspberry Pi from your development machine.
 
-Then specify a password for the default user, pi. This is the user you'll use to log in to the Raspberry Pi. 
+Then specify a password for the default user, pi. This is the user you'll use to log in to the Raspberry Pi.
 
 If the Raspberry Pi is going to use Wi-Fi, you can also specify the SSID, password, and country here. Otherwise, you'll need to connect the Raspberry Pi to your network using an Ethernet cable.
 
