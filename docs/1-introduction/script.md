@@ -4,13 +4,13 @@
 
 > Narrator view
 
-Hi! I'm Cam Soper, a content developer working with .NET at Microsoft. One of my favorite things about .NET is how it can run on a wide variety of devices, from tiny microcontrollers to powerful servers.
+Hi friends! I'm Cam Soper, a content developer working with .NET at Microsoft. My favorite thing about .NET is how it can run on a wide variety of devices, from tiny microcontrollers to powerful servers.
 
-In this series, I'm going to talk about using .NET on common single-board computers, like Raspberry Pi and Hummingboard. Since these devices are small and inexpensive, they're often used in Internet of Things scenarios. For these videos, we'll use Raspberry Pi, since it's pretty ubiquitous.
+In this series, I'm going to talk about using .NET on common single-board computers, like Raspberry Pi, Orange Pi, and Hummingboard. Since these devices are small and inexpensive, they're often used in Internet of Things (or IoT) scenarios. I'll be using Raspberry Pi for these videos, but these concepts generally all apply to other single-board computers.
 
-In this series. we'll look at how to deploy, run, and debug code in these environments. Then I'll show you how to use the .NET IoT Libraries to communicate with a variety of IoT devices, like  sensors and displays.
+In later videos, I'll show you how to deploy, run, and debug code on these devices. Then I'll show you how to use the .NET IoT Libraries to control LEDs, relays, sensors and displays.
 
-But first I'm going to start by showing you what you need to know before you get started with .NET IoT on Raspberry Pi.
+But in this video, I'm going to start by showing how I prepare a Raspberry Pi for use with .NET. Then I'll show you where to find the documentation and how to run quick demo of .NET on your Raspberry Pi.
 
 > Raspberry Pi view
 
@@ -26,21 +26,21 @@ Raspberry Pi supports several Linux-based operating systems. For these videos, w
 
 > Raspberry Pi Imager view
 
-Here's the Imager app. To image the SD card, you first have to select an OS. You can select the default Raspberry Pi OS (32-bit) option, but we won't be using the desktop environment, so I recommend selecting the Raspberry Pi OS (32-bit) Lite option. This will install a minimal version of the operating system, which will save space on the microSD card.
+Here's the Imager app. To image the SD card, I'll first select an OS. Instead of the default 32-bit OS, I recommend selecting a 64-bit variant from the Raspberry Pi OS (Other) menu.  Since we won't be using the desktop environment, I'll be selecting the Lite version to save space on the microSD card.
 
 Next select the microSD card you want to use.
 
-To configure this Raspberry Pi to accept remote connections, you'll need to go into the advanced options. First, note that the default hostname is raspberrypi. I'm going to leave it as is, but you might want to change it to something more descriptive, especially if there are multiple Raspberry Pis on your network.
+Now I need to configure this Raspberry Pi to accept remote connections, so I'll go into the advanced options. First, note that the default hostname is raspberrypi. I'm going to leave it as is, but you might want to change it to something more descriptive, especially if there are multiple Raspberry Pis on your network.
 
-Next, enable SSH. This will allow you to remotely connect to the Raspberry Pi from your development machine.
+Next, I'll enable SSH. This will allow remote connections to the Raspberry Pi from my development PC.
 
-Then specify a password for the default user, pi. This is the user you'll use to log in to the Raspberry Pi.
+Then I'll specify a password for the default user, pi. This is the user I'll use to log in to the device.
 
-If the Raspberry Pi is going to use Wi-Fi, you can also specify the SSID, password, and country here. Otherwise, you'll need to connect the Raspberry Pi to your network using an Ethernet cable.
+Since I plan to use Wi-Fi, I'll specify the SSID, password, and country here. You can also connect your Raspberry Pi using an Ethernet cable.
 
-Optionally specify your timezone and locale. This will make it easier to work with dates and times.
+I'll specify your timezone and locale to make it easier to work with dates and times.
 
-Finally, click the save button and then click the Write button to write the image to the microSD card.
+Now that it's configured, I'll save my changes and write the SD card.
 
 [Device view, showing Raspberry Pi OS booting]
 
@@ -56,7 +56,7 @@ If you are unable to connect, make sure the Raspberry Pi is connected to your ne
 
 > Narrator view
 
-Now your device is set up, and you're ready to write some code. If you have a Raspberry Pi Sense HAT, you can use it to run a quick demo of .NET on Raspberry Pi.
+Now my device is set up, and I'm ready to run some code. We'll do that in the next video. But for now, if you have a Raspberry Pi Sense HAT, I'll show you how to use it to run a quick demo of .NET on Raspberry Pi.
 
 > Sense Hat web page view
 
@@ -64,21 +64,21 @@ Now your device is set up, and you're ready to write some code. If you have a Ra
 
 > Docs view
 
-To get the Sense HAT working, I'm going to follow the instructions in the .NET IoT quickstart guide. The quickstart guide is found in the .NET IoT docs, located at this URL. The quickstart guide walks you through running a script that installs the .NET SDK, clones the sample code, and runs the sample app.
+I'm going to follow the instructions in the .NET IoT quickstart guide. The quickstart guide is found in the .NET IoT docs, located at this URL. The quickstart guide walks you through running a script that installs the .NET SDK, downloads the sample code, and runs the sample app.
 
 > Code view
 
-Here's the code for the sample app. We won't review the code in detail because we're saving that stuff for later videos. For now, we're just going to run the app to verify that the Sense HAT is working.
+Here's the code for the sample app. It's a pretty short program. I won't go over it in detail because we'll be diving into similar code in later videos, but feel free to review it on your own. For now, I'm just going to run the app to verify that the Sense HAT is working.
 
 > Raspberry Pi view
 
-Here's my Sense HAT. I've installed some LED darkening film to control the brightness of the LED matrix on camera. My Raspberry Pi is powered off, and I'm going to plug it into the Raspberry Pi's GPIO header. Once it's plugged in, you can power up the Raspberry Pi.
+Here's my Sense HAT. I've installed some LED darkening film to control the brightness of the LED matrix on camera. My Raspberry Pi is powered off, and I'm ready to install the Sense HAT. Once it's plugged in, you can power on the Raspberry Pi.
 
 > Command shell view
 
-Once the Raspberry Pi boots up, I'll run `sudo raspi-config` to configure the Sense HAT. First, I'll select `Interfacing Options`, then `I2C`, and then `Yes`. This will enable the I2C interface, which is used to communicate with the Sense HAT. Then I'll select `Finish`.
+I need to make a configration change so the Raspberry Pi can talk to the Sense HAT. Once the Raspberry Pi boots up and I'm connected, I'll run the Raspberry Pi configuration app with `sudo raspi-config`. Then I'll go into the `Interfacing Options` menu and enable the I²C interface.
 
-Now that I'll follow the instructions in the .NET IoT quickstart guide, located at this URL. First I'll run `sudo apt update` to update the package list. Then I'll run `sudo apt install git` to install the git command line client.
+After that, I need to install the Git command line client to so the script can download the code. I'll run `sudo apt update` to update the package list. Then I'll run `sudo apt install git` to install Git.
 
 When the git client is installed, I'll paste in the command from the guide. This command downloads and installs the .NET SDK, clones the sample code, and then builds and runs the app.
 
@@ -88,4 +88,4 @@ As you can see, the Sense HAT is functioning properly. The sensors are supplying
 
 > Narrator View
 
-In the next video, I'll show you how to deploy, run, and debug code on Raspberry Pi.
+That's it for this video! In the next video, I'll show you how to deploy, run, and debug code on ARM devices like Raspberry Pi. I'll see you then!

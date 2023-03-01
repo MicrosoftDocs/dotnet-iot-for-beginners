@@ -4,68 +4,86 @@
 
 [Narrator view]
 
-Hi, friends! In our last video, we learned how to get Raspberry Pi OS installed on our Raspberry Pi and connect to it via SSH. In this video, we're going to learn how to deploy, run, and debug our code on the Raspberry Pi.
+Hi, friends! In our last video, I showed you how to get Raspberry Pi OS installed on a Raspberry Pi and connect to it via SSH. In this video, I'm going to show you how to deploy, run, and debug code on ARM devices like my Raspberry Pi. Remember, even if you're not using a Raspberry Pi, you can still apply these concepts to similar devices.
 
-I'm going to use Visual Studio Code on my PC as my main development environment, so you can follow along on your operating system of choice. This video will also demonstrate how to deploy and debug if you prefer to use Visual Studio on Windows. No matter what your development environment is, I'll assume that you already have the .NET SDK installed.
+[Console view]
 
-Before we get started, I recommend you enable passwordless SSH access to your Raspberry Pi. This will make it easier to deploy and debug your code. The .NET IoT docs, located at this URL, link to a great tutorial on how to do this. I'll also include a link in the description.
+Before we get started, I recommend you enable passwordless SSH access to your Raspberry Pi. This will make it easier to deploy and debug your code. The .NET IoT docs, located at this URL, link to a great tutorial on how to do this.
 
-Let's get started!
+I'm in PowerShell on Windows, but this should also work in zsh or bash on macOS or Linux. I'll start by running this command to print the contents of the `.ssh` in my profile directory. I'm looking for a file named `id_rsa.pub`, which contains the public key for my SSH key pair. Since I don't have this file, I'll use the `ssh-keygen` command to generate a new key pair, accepting all the defaults. Listing the contents of the `.ssh` directory shows the file is present now.
+
+Referring to the passwordless SSH documentation, here's the command to copy my public key to the pi. I'll copy and paste it into Notepad, and I'll change the target username and IP address to match my device. Now I'll copy the command and paste it into PowerShell and run it. When prompted, I'll type in the password for the `pi` user.
+
+Now that I've copied my public key to the Raspberry Pi, I'll use the `ssh` command to connect. Since I'm authenticated using my key pair, I won't be prompted for a password.
+
+[Narrator View]
+
+Now we're ready to run some code! I'm going to use Visual Studio Code as my main development environment to make it easier to follow along if you're using macOS or Linux. I'll also demonstrate everything using Visual Studio on Windows. Either way, you'll also need the .NET 7 SDK.
+
+Before we get started, let's talk about why I recommend doing development work on a PC instead of in the Raspberry Pi OS desktop environment.
+
+[Raspberry Pi OS 64-bit montage]
+
+As of this recording the C# extension for Visual Studio Code doesn't support the 32-bit version of Raspberry Pi OS, which is the default version. It runs fine on the 64-bit version, but given the performance contraints of the relatively low-powered Raspberry Pi, I recommend using a more powerful development machine for the best experience.
 
 [Terminal/VS Code view]
 
-I'm going to start on my development machine by creating a new .NET console application. I'm going to call it `HelloWorld`. I'll use the `dotnet new console` command to create a new console application. I'll use the `cd` command to change to the `HelloWorld` directory, and then I'll use the `code .` command to open the directory in Visual Studio Code.
+Here's a shell on my development machine. I'm going to start by cloning the sample app repository from GitHub.  It's located at this URL. The project is in the `Animate` folder inside repo. I'll switch to the project directory and open it in Visual Studio Code.
+
+Here's the code. It's not a long program. It's a fun animation demo that prints output to the console. Seems like it's working, so I'll press `Ctrl+C` to stop it.
 
 [Visual Studio view]
 
-If you're using Visual Studio, you can use the `File [New [Project` menu to create a new console application.]
-
-[Visual Studio Code view]
-
-Once the project is open in the IDE, I'll write a simple program to ask the user's name and then print a greeting.
-
-Now that I've done that, I'll save the file and switch to the terminal. I'll use the `dotnet run` command to run the application. I'll type in my name, and the application will print a greeting.
-
-[Visual Studio view]
-
-If you're using Visual Studio, you can use the `Debug [Start Debugging` menu to run the application.]
+If you're using Visual Studio, you can use the Clone Repository feature. Once the repo is cloned, you can run the app in the IDE using any of the usual methods. The app opens on my other monitor. It's successfully running, so I'll stop it.
 
 [Narrator view]
 
-Now that we've seen how to run our application on our development machine, let's see how to deploy it to the Raspberry Pi.
+Now that we've seen the app running, let's see how to deploy it to the device.
+
+[Docs view]
+
+The .NET IoT documentation describes two ways to publish your app, framework-dependent and self-contained. Framework-dependent deployment creates a version of your app that uses the .NET runtime that's installed on the target device. Self-contained deployment creates a version of your app that includes the .NET runtime, so it can run without any dependencies on the target device. Framework-dependent deployment is smaller, but self-contained deployment is more portable. For these videos, we'll use self-contained deployment so we don't have to worry about installing the .NET runtime on the device.
 
 [Visual Studio Code view]
 
-I'll use the `dotnet publish` command to publish the application. I'll use the `--runtime` option to specify the runtime identifier for my target environment, which is linux-arm. If you're using one of the 64-bit versions of Raspberry Pi OS, be sure to use linux-arm64. I'll use the `--self-contained` option to specify that the application should be published with the .NET runtime included. This means that I can run the app on the Raspberry Pi without having to install the .NET runtime, but it also means that the app will be larger.
+From the terminal in VS Code, I'll use the dotnet publish command shown here to create a self-contained version of my app, making sure to use the right --runtime option for the target environment. In my case, that's "linux-arm64", because I'm using the 64-bit OS. Take note of the output path that contains the published app. Looking inside that directory, we see the application files along with the .NET runtime.
 
 [Visual Studio view]
 
-If you're using Visual Studio, you can use the `Publish` menu to publish the application. Be sure to select the target runtime and the `Self-contained` option.
+If I'm using Visual Studio, I'll right click on the project in Solution Explorer, and select **Publish**. Then I'll specify that I want to publish to a folder and select finish to and generate the publish profile. Since we're going to be debugging later, I'll select the Debug configuration. I'll  also select the self-contained deployment mode along with the right target runtime for my operating system. After saving the publish profile, I'll click Publish. When the publish is done, take note of the output path.
 
-[Visual Studio Code]
+[Terminal view]
 
-Now that I've published the application, I'll use an SSH file transfer utility to copy the application to the Raspberry Pi. I'll use the `scp` command line tool, which is part of OpenSSH. If you prefer to use a graphical file transfer utility, you can use WinSCP or FileZilla.
+Now that I've got published files, the next step is to copy them to the device. This process is the same regardless of IDE.
 
- The syntax for the `scp` command is `scp <source[<destination>`. The source is the path to the application on my development machine, and the destination is the path ]to the application on the Raspberry Pi. The destination path is in the format `username@hostname:path`. I'll use the `pi` username and the IP address of my Raspberry Pi. I'll use the `~` character to specify the home directory of the user. Finally, the `-r` option tells `scp` to copy the directory recursively.
+First I'll use the `ssh` command to create a folder on the destination device. Then I'll use the SCP command to copy the files. The syntax for the SCP command looks like this.
 
-Now that I've copied the application to the Raspberry Pi, I'll use the `ssh` command to connect to the Raspberry Pi. You can see that the app is in the home directory of the `pi` user. In the app directory, the HelloWorld.dll file is the .NET assembly that contains the application. Since we deployed the app as a self-contained app, the .NET runtime is included in the app directory. There's also a shim file called HelloWorld that's used to launch the app. Before we can run the app, we need to make the shim file executable. I'll use the `chmod` command to make the file executable. Now I'll run the app like this. I'll type in my name, and the app will print a greeting.
+[FileZilla view]
+
+If you prefer, you can use a drag-and-drop tool, like the open-source tool Filezilla.
+
+[Terminal view]
+
+Now that I've copied the application to the Raspberry Pi, I'll ssh to the device and switch to the app directory. Listing the contents of that directoy shows all of my files, including this file called Animate with no extension. This is the executable shim that launches the app. Before I can run it, I have to mark it executable with this command (`chmod +x ./Animate`). Now I can run the app on the Raspberry Pi.
 
 [Narrator view]
 
-We've deployed the app to the Raspberry Pi and run it. Now let's see how to debug it.
+I've deployed the app to the device and I've made sure it runs. Now let's see how to debug it.
 
 [Visual Studio Code view]
 
-Before I can debug the app, I need to install the .NET Core debugger on the Raspberry Pi. That's easy to do at the command line. We'll run this command that downloads a run a script that handles everything for us. Don't try to copy this command from the video. You can get it from the debugging tutorial in the .NET IoT docs. I'll also include a link in the description.
+Before I can debug the app, I need to install the .NET debugger on the device. I'll go to the documentation site and copy this command, then I'll run it on the pi. It downloads and runs a script to install the debugger.
 
-Visual Studio Code needs a launch.json file to define how to launch the app and attach to it for debugging remotely. I'll create one and paste in this configuration I've created already. Note the `program` property that points to the shim, the `cwd` property that points to the app directory, and the `pipeTransport` property that defines how to connect to the Raspberry Pi. Again, don't try to copy this configuration from the video. You can get it from the debugging tutorial in the .NET IoT docs. I'll also include a link in the description.
+Now I'll go back to the docs and copy the launch.json configuration for a self-contained app. In Code, I'll go to the run and debug tab in and generate the launch.json file.
 
-Now that I've created the launch.json file, I'll switch to the Debug view. I'll click the green arrow to start debugging. Before I type in my name, I'll set a breakpoint on the `Console.WriteLine` line. I'll type in my name, and the app will stop at the breakpoint. 
+Now that I've created the launch.json file, I'll paste in the configuration. I'll give the configuration a unique name, and then I'll set the path to the executable and the working directory. After saving the file, I can select the configuration from the dropdown and press F5 to start the app.
+
+The animation displays oddly because the debug console displays text differently, but the app is running. I can set breakpoints, step through code, and inspect variables. When I'm done, I can stop debugging.
 
 [Visual Studio view]
 
-In Visual Studio, you can use the `Debug [Attach to Process` menu to attach to the app. You'll need to provide the IP address or hostname of the Raspberry Pi and the ]username and password for the user.
+Using Visual Studio is even easier. I'll start by running the app on the device. In Visual Studio, I'll go to the Debug menu and select Attach to Process. I'll select SSH as my connection type, and then I'll fill out the form with my connection info. Visual Studio handles installing the debugger, so all I have to do is select the running process from the list. Now I can debug the app.
 
 [Narrator view]
 
-That's all there is to deploying and debugging .NET apps on Raspberry Pi. In the next video, we'll learn how to use the .NET IoT libraries to control the GPIO pins on the Raspberry Pi.
+That's all for this video. In the next video, I'll show you how to use the .NET IoT libraries to control general-purpose input/output pins for things like LEDs and relays. See you then!
