@@ -1,8 +1,8 @@
-### Narrator
+**Narrator**
 
 Hi friends, it's me again! In our last video, I showed you how to use GPIO pins for output. Along the way, I also showed you how breadboards and relays work. In this video, I'll show you how to use those same GPIO pins for input. Let's dive in!
 
-### Console/VS Code
+**Console/VS Code**
 
 This time I'm going to write my code first. I'll make a new project named Input and open it in my IDE. Once I'm in my new project, I'll add the `System.Device.Gpio` NuGet package. After that, I'll go to the .NET IoT docs and copy the code from the Binary Input using GPIO tutorial and paste it into Program.cs. Let's review the code.
 
@@ -18,7 +18,7 @@ The event handler uses a similar ternary expression to print the new status of t
 
 Now I'll save and build. Looks good, so I'll deploy it as a self-contained app like in previous videos.
 
-### Breadboard
+**Breadboard**
 
 I don't really need a breadboard for this circuit, but I like to use one anyway because it makes it easier to see what's going on. I'll just connect pin 21 directly to ground and then run the app.
 
@@ -26,7 +26,7 @@ Since the pin is connected to ground, the pin is low and the initial status is "
 
 Why are there multiple messages when I reconnect the wire? This is a phenomenon called "bouncing." When I connect the wire, the mechanical connection is not initially stable, so multiple events are fired. This is a common problem with mechanical switches, and there are lots of strategies to mitigate it. 
 
-### Code
+**Code**
 
 One strategy for mitigating bounce is simply ignoring events that occur too quickly after the previous event. To do this, I'll create a variable to store the last time an event was handled.
 
@@ -36,21 +36,21 @@ Then I'll update the event handler to check the time since the last event and si
 
 The build is green, so the code is clean. I'll deploy it again.
 
-### Breadboard
+**Breadboard**
 
 Running the app with the debounce strategy, I see that the status only changes once when I connect and disconnect the wire.
 
-### Narrator
+**Narrator**
 
 Now that we've seen how to detect input with GPIO pins, let's look at some practical applications of this technique.
 
-## Desktop
+**Desktop**
 
 This is a magnetic reed switch. It's a switch that's activated by a magnet. These are commonly used to detect when a door or window is open or closed. I'll use some jumper wires with alligator clips to connect the reed switch to a breadboard using pin 21 as the input pin.
 
 I can use my app with no changes to display the alert when the switch is open.
 
-## Laser breadboard
+**Laser breadboard**
 
 Here's another example of detecting input.
 
@@ -58,23 +58,23 @@ On one end of this piece of wood, I have a laser transmitter. It's powered by th
 
 I'll include links in the description if you want to know more about how this circuit works.
 
-## Code view
+**Code view**
 
 I need to make a quick change to my app. Earlier I was trying to detect when a circuit was open and closed, so I was using the PullUp input mode. But in this case, I want to detect when the output voltage from the laser receiver pulls the pin high, so I'll use the PullDown mode instead. In this mode, the pin is pulled low when it's not connected to anything, and pulled high when it gets voltage.
 
-## Laser breadboard
+**Laser breadboard**
 
 Let's test it. As expected, when the laser is pointed at the receiver, the status is READY. When I break the laser beam, the status changes to ALERT.
 
-## Narrator
+**Narrator**
 
 As we approach the end of this video, I recalled a challenge my WW1 history-loving son presented to me some time ago. He's always been curious if I could create a device to send and receive Morse code messages. Well, now seems like the perfect moment tackle that challenge using this laser setup. Let's take a look!
 
-## Code View
+**Code View**
 
 I wrote two apps, one for sending Morse code, and another for receiving it. You can find the code at this URL. The sending app uses GPIO output like in the previous video to tap out the Morse messages. The receiving app uses GPIO input to detect the messages on the laser receiver. There's a little bit of logic to detect the timing of the dots and dashes, but I won't go into that in this video. I'll just show you the final result.
 
-## Laser breadboard
+**Laser breadboard**
 
 I connected the laser transmitter to a relay. The relay is driven by pin 18 on my Pi that will send the Morse code. The laser receiver is connected to pin 21 on the receiver device that will display the Morse code.
 
@@ -82,7 +82,7 @@ I'll run the receiver app first, and then I'll send a string with the sender app
 
 I'd say that was a success!
 
-## Narrator
+**Narrator**
 
 I hope you enjoyed that. I had a lot of fun making it.
 
