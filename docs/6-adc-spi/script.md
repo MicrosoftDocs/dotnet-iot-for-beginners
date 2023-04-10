@@ -39,15 +39,33 @@ I live in Kansas City, Missouri, USA, and like most Kansas Citians, I love good 
 
 The solution to this problem is a PID controller. PID stands for Proportional-Integral-Derivative, and it's a control theory that uses a closed loop to continually adjust the rate of change as a process variable reaches its target. You already use the algorithm every day, without even realizing it. If you've used cruise control while driving a car, you've used a PID controller. The controller constantly monitors the speed of the car, and adjusts the throttle to keep the speed close to the target speed.
 
-I decided to build my own PID controller for my smoker. I based my design off of a similar project, so I can't claim all the credit. However, my solution is, as far as I know, the only project to do it with .NET using the techniques I've shown you in this video series. I control the auger, blower, and igniter using GPIO output to drive relays. A 20x4 LCD display shows the front display, and an Analog-to-Digital Converter reads temperatures for the grill and meat probe. Additionally, I integrated the smoker with my home automation system, Home Assistant, using the MQTTnet library. I can now control and monitor my smoker remotely, receive automated notifications when the food is done, and more. The code for my customized smoker, Inferno, is available on this GitHub repo. Instead of reviewing the entire codebase, I'll just show you how Inferno monitors temperatures using an analog-to-digital controller.
+I decided to build my own PID controller for my smoker. I based my design off of a similar project, so I can't claim all the credit. However, my solution is, as far as I know, the only project to do it with .NET using the techniques I've shown you in this video series. I control the auger, blower, and igniter using GPIO output to drive relays. A 20x4 LCD display shows the front display, and an Analog-to-Digital Converter reads temperatures for the grill and meat probe. Additionally, I integrated the smoker with my home automation system, Home Assistant, using the MQTTnet library. I can control and monitor my smoker remotely, receive automated notifications when the food is done, and more. The code for my customized smoker, Inferno, is available on this GitHub repo. Instead of reviewing the entire codebase, I'll just show you how Inferno monitors temperatures using an analog-to-digital controller.
 
 **RTD Breadboard**
 
-This is a solderable breadboard. It works just like a regular breadboard, except you can solder components in place to create a permanent circuit. I use this breadboard to test changes to my code without having to push the code to the smoker. You can see the MCP3008 in the middle, and it's wired up exactly like the potentiometer demo I did earlier. The difference is, instead of a potentiometer, I've built a drop voltage circuit. This is very similar to the voltage divider I showed you with the laser receiver, but instead of two resistors, I have a resistor and a screw terminal. The screw terminal is connected to the smoker's heat probe, which is a special type of thermistor called an RTD, or Resistance Temperature Detector. The MCP3008's CH0 pin reads the output of the voltage divider.
+This is a solderable breadboard. It works just like a regular breadboard, except you can solder components in place to create a permanent circuit. I use this breadboard to test changes to my code without having to push the code to the smoker. You can see the MCP3008 in the middle, and it's wired up mostly like the potentiometer I showed you earlier. The difference is, instead of a potentiometer, I've built a voltage drop circuit. This is very similar to the voltage divider I showed you with the laser receiver in a previous video, but instead of two resistors, I have a resistor and a screw terminal. The screw terminal is connected to the smoker's heat probe, which is a special type of thermistor called an RTD, or Resistance Temperature Detector. The MCP3008's CH0 pin reads the output of the voltage drop circuit.
 
 **RTD Code**
 
 I've included code to read the RTD in the repo for this video series. Let's review it.
+
+I'll start with Program.cs. I start by reading the appsettings.json file for configuration parameters. I'll talk more about this configuration in a moment.
+
+Then I create a new SpiConnectionSettings object and use that to create an SpiDevice object. I then use the SpiDevice object and the configuration object to create an object I call RtdProbe. The main loop of the program just displays the value of the RtdProbe's ProbeTemp property every second.
+
+Now let's look at RtdProbe. RtdProbe is a wrapper around the MCP3008. In the constructor, I initialize the ADC, and then I initialize a ConcurrentQueue to store resistance readings from the RTD. Let's come back to that later.
+
+Next I read an offset value from the configuration object. This is used to for fine-grained adjustments to the temperature reading. In the case of this RTD, I know it runs about 9 degrees fahrenheit too hot, so I set the offset to -9.
+
+The final thing I do in the constructor is kick off a long-running task called ReadAdc. ReadAdc just loops forever. It reads the ADC, converts the raw value to a resistance, and then adds the resistance to the _probeResistances ConcurrentQueue. If there are more than 100 items in the queue, I dequeue the extra items and throw them away.
+
+Why am I doing this? Well, the MCP3008, being a 10-bit ADC, can only read values between 0 and 1023. However, the RTD has a resistance range of 100 ohms to 1,000 ohms. That's a huge range, and it's not possible to get a precise reading with a 10-bit ADC. To get around this, I keep the last 100 readings, and then average them when the ProbeTemp property is accessed. This gives me a much more precise reading. In retrospect, I should have used a higher resolution ADC, like the ADS1115, or the MAX31865, which is specifically designed for RTDs, but this solution works well enough.
+
+The rest of this is just some math to convert the average resistance to a temperature value. First I calculate the temperature in degrees celsius using the well-known formula for a 2-wire RTD, and then because I'm American, I convert that value to degrees fahrenheit.
+
+Let's test it.
+
+**RTD Demo**
 
 
 

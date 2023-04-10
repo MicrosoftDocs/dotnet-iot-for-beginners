@@ -28,7 +28,7 @@ namespace temperature
                 {
                     await Task.Delay(TimeSpan.FromSeconds(1));
                     Console.Clear();
-                    Console.WriteLine($"{rtd.ProbeTemp}°F");
+                    Console.WriteLine($"RTD Temperature: {rtd.ProbeTemp}°F");
                 }
             }
         }
