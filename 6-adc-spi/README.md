@@ -18,3 +18,4 @@ How do analog signals get converted into digital data? In this episode of .NET I
 - [Home Assistant](https://www.home-assistant.io)
 - [MQTTnet](https://github.com/dotnet/MQTTnet)
 - [.NET IoT Libraries documentation](https://learn.microsoft.com/dotnet/iot/)
+- [.NET Docs GitHub repo](https://github.com/dotnet/docs)
