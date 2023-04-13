@@ -2,6 +2,7 @@
 using Iot.Device.Ads1115;
 using UnitsNet;
 
+// Ads1115 example. For MCP3008, see https://learn.microsoft.com/dotnet/iot/tutorials/adc
 I2cConnectionSettings settings = new(1, (int)I2cAddress.GND);
 I2cDevice device = I2cDevice.Create(settings);
 
