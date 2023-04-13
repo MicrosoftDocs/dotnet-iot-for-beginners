@@ -5,6 +5,7 @@ Join Microsoft Sr. Content Developer Cam Soper as he continues his exploration o
 ## Code
 
 - [Use GPIO for binary input](https://github.com/MicrosoftDocs/dotnet-iot-assets/tree/main/tutorials/InputTutorial) (source)
+- [Morse Code in .NET with GPIO](https://learn.microsoft.com/samples/dotnet/samples/morse-dotnet/)
 
 ## Links
 
