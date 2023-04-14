@@ -2,7 +2,7 @@
 
 How do analog signals get converted into digital data? In this episode of .NET IoT for Beginners, Microsoft Sr. Content Developer Cam Soper explores Analog-to-Digital converters (ADCs) with single-board computers and the .NET IoT libraries. Cam then shows how he uses a Raspberry Pi and an MCP3008 ADC for one of his favorite activities: BBQ with .NET!
 
-## Notes about my RTD circuit
+## A note about the RTD circuit in the video
 
 I'm not an electrical engineer. 
 
