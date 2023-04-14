@@ -10,5 +10,6 @@ Join Microsoft Sr. Content Developer Cam Soper as he continues his exploration o
 ## Links
 
 - [Use GPIO for binary input](https://learn.microsoft.com/dotnet/iot/tutorials/gpio-input) (tutorial)
+- [Voltage dividers](https://en.wikipedia.org/wiki/Voltage_divider)
 - [System.Device.Gpio.GpioController Class](https://learn.microsoft.com/dotnet/api/system.device.gpio.gpiocontroller?view=iot-dotnet-latest)
 - [.NET IoT Libraries documentation](https://learn.microsoft.com/dotnet/iot/)
