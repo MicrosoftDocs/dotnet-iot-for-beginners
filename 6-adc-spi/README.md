@@ -6,7 +6,7 @@ How do analog signals get converted into digital data? In this episode of .NET I
 
 I'm not an electrical engineer. 
 
-When I was compiling these notes, I couldn't find much information to refresh my memory on how I designed my RTD circuit. Most RTD circuits seem to be a little more complicated than the solution I presented, which is basically a voltage divider with a variable resistor (the RTD). I seem to think my research a few years ago when I built my smoker indicated that this was called a voltage drop circuit, but looking back now, I'm not sure that's what it's called. My apologies if I was wrong in the video. If you're an electrical engineer, please [reach out to educate me](mailto:Cam.Soper@microsoft.com). 🙂
+When I was compiling these notes, I couldn't find much information to refresh my memory on how I designed my RTD circuit. Most RTD circuits seem to be a little more complicated than the solution I presented, which is basically a [voltage divider](https://en.wikipedia.org/wiki/Voltage_divider) with a variable resistor (the RTD). I seem to think my research a few years ago when I built my smoker indicated that this was called a voltage drop circuit, but looking back now, I'm not sure that's what it's called. My apologies if I was wrong in the video. If you're an electrical engineer, please [reach out to educate me](mailto:Cam.Soper@microsoft.com). 🙂
 
 In conclusion, don't take my word on it that the circuit in the video is the correct way to read an RTD. It works fine for the purposes of my smoker (I've tested the accuracy) but you might be better advised to use an RTD-specific ADC like the MAX31865.
 
