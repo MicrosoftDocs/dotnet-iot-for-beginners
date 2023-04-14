@@ -1,4 +1,4 @@
-# IoT Sensors and Displays with I²C and .NET
+# IoT sensors and displays with I²C and .NET
 
 Join Sr. Content Developer Cam Soper as he shows how to interact with I²C devices using a single-board computers, like Raspberry Pi. Using a BME280 temperature, humidity, and pressure sensor and a 20x4 LCD character display, Cam demonstrates using the .NET IoT libraries to use the I²C protocol to communicate with any supported device.
 

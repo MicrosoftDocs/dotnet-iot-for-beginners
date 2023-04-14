@@ -1,6 +1,6 @@
-# Introduction to .NET Internet of Things with Single Board Computers and Raspberry Pi
+# Introduction to .NET Internet of Things with single board computers and Raspberry Pi
 
-In this video series, Microsoft Sr. Content Developer Cam Soper explores the use of .NET on common single-board computers, such as Raspberry Pi, Orange Pi, and Hummingboard. The videos focus on using .NET Internet of Things Libraries to control LEDs, relays, sensors, and displays. In this introductory video, Cam shows how to prepare a Raspberry Pi for use with .NET, where to find the documentation, and how to run a quick demo using a Raspberry Pi Sense HAT.
+In this video series, Microsoft Sr. Content Developer Cam Soper explores the use of .NET on common single-board computers, such as Raspberry Pi, Orange Pi, and Hummingboard. The series focus is using the .NET IoT Libraries to control LEDs, relays, sensors, displays, and more. In this introductory video, Cam shows how to prepare a Raspberry Pi for use with .NET, where to find the documentation, and how to run a quick demo using a Raspberry Pi Sense HAT.
 
 ## Code
 
