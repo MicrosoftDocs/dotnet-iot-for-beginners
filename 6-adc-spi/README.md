@@ -2,6 +2,14 @@
 
 How do analog signals get converted into digital data? In this episode of .NET IoT for Beginners, Microsoft Sr. Content Developer Cam Soper explores Analog-to-Digital converters (ADCs) with single-board computers and the .NET IoT libraries. Cam then shows how he uses a Raspberry Pi and an MCP3008 ADC for one of his favorite activities: BBQ with .NET!
 
+## Notes about my RTD circuit
+
+I'm not an electrical engineer. 
+
+When I was compiling these notes, I couldn't find much information to refresh my memory on how I designed my RTD circuit. Most RTD circuits seem to be a little more complicated than the solution I presented, which is basically a voltage divider with a variable resistor (the RTD). My research at the time I built my smoker indicated that this was a voltage drop circuit, but looking back, I'm not sure that's what it's called. If you're an electrical engineer, please reach out to educate me. 🙂
+
+My point is, don't take my word on it that this circuit is 100% the way to read an RTD. It works fine for the purposes of my smoker (I've tested the accuracy) but you might be better advised to use an RTD-specific ADC like the MAX31865.
+
 ## Code
 
 - [Read values from an analog-to-digital converter](https://github.com/MicrosoftDocs/dotnet-iot-assets/tree/main/tutorials/SensorTutorial) (source)
